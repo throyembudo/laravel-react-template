@@ -25,6 +25,7 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'required',
             'name' => 'required|string|max:55',
             'email' => 'required|email|unique:users,email,'.$this->id,
             'password' => [
