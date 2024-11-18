@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-const Table = ({ columns, data, loading, emitRow }) => {
+const Table = ({ columns, data, columnsLength, loading, emitRow }) => {
   
   return (
     <div className="card animated fadeInDown">
@@ -15,7 +15,7 @@ const Table = ({ columns, data, loading, emitRow }) => {
         {loading &&
           <tbody>
           <tr>
-            <td colSpan="5" className="text-center">
+            <td colSpan={columnsLength} className="text-center">
               Loading...
             </td>
           </tr>

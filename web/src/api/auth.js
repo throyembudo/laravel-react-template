@@ -18,5 +18,9 @@ export default {
 
   logout() {
     return http(`${this.baseUrl}/logout`).post()
+  },
+
+  getUserDetails() {
+    return http(`${this.baseUrl}/user`).get()
   }
 }

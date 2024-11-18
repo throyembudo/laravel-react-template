@@ -22,9 +22,9 @@ export default function DefaultLayout() {
   }
 
   useEffect(() => {
-    UserApi.index('/user')
+    Auth.getUserDetails()
       .then(({data}) => {
-         setUser(data)
+        setUser(data)
       })
   }, [])
 
@@ -37,7 +37,7 @@ export default function DefaultLayout() {
       <div className="content">
         <header>
           <div>
-            Header
+            
           </div>
 
           <div>

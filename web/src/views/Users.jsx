@@ -54,7 +54,7 @@ export default function Users() {
         <Link className="btn-add" to="/users/new">Add new</Link>
       </div>
       <div className="card animated fadeInDown">
-        <Table columns={columns} data={users} loading={loading} emitRow={onDeleteClick} ></Table>
+        <Table columns={columns} data={users} columnsLength={columns.length} loading={loading} emitRow={onDeleteClick} ></Table>
       </div>
     </div>
   )

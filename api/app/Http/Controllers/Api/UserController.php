@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\{
+use App\Http\Requests\User\{
     StoreUserRequest,
     UpdateUserRequest
 };
@@ -29,8 +29,6 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        $user = $this->userService->createUser($data);
-    
         return $this->userService->createUser($data);
     }
 
