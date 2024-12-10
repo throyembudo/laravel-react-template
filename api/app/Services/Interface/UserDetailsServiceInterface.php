@@ -2,6 +2,7 @@
 
 namespace App\Services\Interface;
 use App\Models\User;
+use Laravel\Socialite\Contracts\User as SocialiteUser;
 
 interface UserDetailsServiceInterface
 {
@@ -11,4 +12,6 @@ interface UserDetailsServiceInterface
     public function login(array $request);
 
     public function logout(User $user);
+
+    public function firstOrCreateGoogleLogin(SocialiteUser $socialiteUser);
 }

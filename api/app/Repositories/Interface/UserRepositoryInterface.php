@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Repositories\Interface;
- 
+use Laravel\Socialite\Contracts\User as SocialiteUser;
 interface UserRepositoryInterface
 {
-
     public function index();
 
     public function show(int $id);
@@ -13,5 +12,7 @@ interface UserRepositoryInterface
 
     public function update($request);
 
-    public function destory(int $id);
+    public function destroy(int $id);
+
+    public function firstOrCreate(SocialiteUser $socialiteUser);
 }

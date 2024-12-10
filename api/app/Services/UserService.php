@@ -41,7 +41,7 @@ class UserService implements UserServiceInterface
 
     public function deleteUser(int $id)
     {
-        return $this->user->destory($id);
+        return $this->user->destroy($id);
     }
 
     public function showUser(int $id)
