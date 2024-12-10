@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Models\User;
-use App\Http\Resources\UserResource;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -16,32 +15,29 @@ class UserRepository implements UserRepositoryInterface
 
     public function show(int $id)
     {
-        return new UserResource(User::find($id));
+        return User::find($id);
     }
 
-    public function store($request)
+    public function store($request, $details = false)
     {
         $request['password'] = bcrypt($request['password']);
 
         $user = User::create($request);
 
-        return response(new UserResource($user) , 201);
+        return $user;
     }
 
     public function update($request)
     {
         $user = User::find($request['id']);
 
-        if ($user) {
-            if (isset($request['password'])) {
-                $request['password'] = bcrypt($request['password']);
-            }
-            $user->update($request);
-
-            return  response(new UserResource($user) , 200);
-        } else {
-            return response()->json(['message' => 'User not found. Unable to Update'], 403);
+        if (isset($request['password'])) {
+            $request['password'] = bcrypt($request['password']);
         }
+        $user->update($request);
+
+        return $user;
+
     }
 
     public function destory(int $id)

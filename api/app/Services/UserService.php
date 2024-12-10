@@ -4,7 +4,8 @@ namespace App\Services;
 
 use App\Services\Interface\UserServiceInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
-// app/Services/UserService.php
+use App\Http\Resources\UserResource;
+
 class UserService implements UserServiceInterface
 {
     protected $user;
@@ -21,12 +22,21 @@ class UserService implements UserServiceInterface
 
     public function createUser(array $data)
     {
-        return $this->user->store($data);
+        $data = $this->user->store($data);
+
+        return response(new UserResource($data) , 201);
     }
 
     public function updateUser(array $data)
     {
-        return $this->user->update($data);
+        $user = $this->user->show($data['id']);
+        if ($user) {
+            $data = $this->user->update($data);
+
+            return response(new UserResource($data) , 200);
+        } else {
+            return response()->json(['message' => 'User not found. Unable to Update'], 403);
+        }
     }
 
     public function deleteUser(int $id)
@@ -36,6 +46,8 @@ class UserService implements UserServiceInterface
 
     public function showUser(int $id)
     {
-        return $this->user->show($id);
+        $data =  $this->user->show($id);
+
+        return new UserResource($data);
     }
 }
