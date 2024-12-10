@@ -13,6 +13,7 @@ class ServicesServiceProvider extends ServiceProvider
      */
     public $bindings = [
         \App\Services\Interface\UserServiceInterface::class => \App\Services\UserService::class,
+        \App\Services\Interface\UserDetailsServiceInterface::class => \App\Services\UserDetailsService::class,
     ];
 
     /**
