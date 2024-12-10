@@ -7,6 +7,8 @@ import NotFound from "./views/NotFound";
 import Signup from "./views/Signup";
 import Users from "./views/Users";
 import UserForm from "./views/UserForm";
+import GoogleCallback from "@/views/GoogleCallback";
+
 
 const router = createBrowserRouter([
   {
@@ -46,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <Signup/>
+      },
+      {
+        path: "/auth/google",
+        element: <GoogleCallback />
       }
     ]
   },

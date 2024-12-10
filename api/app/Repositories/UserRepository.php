@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Models\User;
+use Laravel\Socialite\Contracts\User as SocialiteUser;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -18,7 +19,7 @@ class UserRepository implements UserRepositoryInterface
         return User::find($id);
     }
 
-    public function store($request, $details = false)
+    public function store($request)
     {
         $request['password'] = bcrypt($request['password']);
 
@@ -40,7 +41,7 @@ class UserRepository implements UserRepositoryInterface
 
     }
 
-    public function destory(int $id)
+    public function destroy(int $id)
     {
         $user = User::find($id);
 
@@ -53,4 +54,16 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
+    public function firstOrCreate(SocialiteUser $socialiteUser) 
+    {
+        return User::firstOrCreate([
+            'email' => $socialiteUser->getEmail(),
+        ],
+        [
+            'email_verified_at' => now(),
+            'name' => $socialiteUser->getName(),
+            'google_id' => $socialiteUser->getId(),
+            'avatar' => $socialiteUser->getAvatar(),
+        ]);
+    }
 }

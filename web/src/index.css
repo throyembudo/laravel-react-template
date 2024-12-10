@@ -40,6 +40,7 @@ input:focus {
 .btn-add,
 .btn-edit,
 .btn-delete {
+    border-radius: 5px;
     font-family: "Roboto", sans-serif;
     outline: 0;
     background: #5b08a7;
@@ -55,6 +56,20 @@ input:focus {
 
 .btn-block {
     width: 100%;
+}
+
+.btn-google {
+    display: flex;
+    width: 100%;
+    color: gray;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 .btn-add,
@@ -87,7 +102,11 @@ input:focus {
 .btn:focus {
     background: #5b08a7;
 }
-
+.btn-google:hover,
+.btn-google:active,
+.btn-google:focus {
+    background-color: #FFFFFF;
+}
 .text-center {
     text-align: center;
 }
@@ -168,6 +187,13 @@ table > tbody > tr > td {
     color: #b3b3b3;
     font-size: 16px;
     text-align: center;
+    margin-bottom: 16px;
+}
+
+.login-signup-form .form .google-button {
+    display: flex;
+    color: #b3b3b3;
+    font-size: 16px;
 }
 
 .login-signup-form .form .message a {
