@@ -29,6 +29,10 @@ export default {
   },
 
   index (params = null) {
+    if (params) {
+      return this.http(params)
+      .get(params)
+    } 
     return this.http(this.baseUrl)
       .get(this.url, { params })
   },

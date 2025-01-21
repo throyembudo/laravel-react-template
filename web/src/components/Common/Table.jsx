@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-const Table = ({ columns, data, columnsLength, loading, emitRow }) => {
+const Table = ({ columns, data, columnsLength, loading, emitRow, pages, getUserByPage }) => {
   
   return (
     <div className="card animated fadeInDown">
@@ -47,6 +47,15 @@ const Table = ({ columns, data, columnsLength, loading, emitRow }) => {
           </tbody>
         }
       </table>
+      { pages && !loading &&
+        <ul className="label-ul">
+        {pages.map((page, index) => {
+          let cleanedItem = page.label.replace(/&raquo;/g, "");
+          cleanedItem = cleanedItem.replace(/&laquo;/g, "");
+          return <button className={`label-page ${page.active ? "btn-edit" : "btn-default"}`} key={index} onClick={ev => getUserByPage && getUserByPage(page.url)}>{cleanedItem.trim()}</button>
+        })}
+        </ul>
+      }
     </div>
   );
 };

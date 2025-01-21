@@ -1,7 +1,6 @@
 import {Link, Navigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../context/ContextProvider";
 import Auth from "@/api/auth.js";
-import UserApi from "@/api/authenticated/user.js";
 import {useEffect} from "react";
 
 export default function DefaultLayout() {
@@ -31,6 +30,7 @@ export default function DefaultLayout() {
   return (
     <div id="defaultLayout">
       <aside>
+        <Link to="/dashboard" className="logo-nav"><img src="public/logo.png" alt="Logo" className="logo" /><span className="logo-text">Project Name</span></Link>
         <Link to="/dashboard">Dashboard</Link>
         <Link to="/users">Users</Link>
       </aside>
