@@ -4,18 +4,27 @@ import {Link} from "react-router-dom";
 import {useStateContext} from "../context/ContextProvider.jsx";
 import Table from "@/components/Common/Table";
 import DeleteModal from "@/components/Common/DeleteModal";
+import UserModal from "@/components/User/UserModal";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const {setNotification} = useStateContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [formType, setFormType] = useState("Create");
   const [userDetail, setUserDetail] = useState([]);
   const [pages, setPages] = useState([]);
 
   const closeModal = () => {
     setIsModalOpen(false);
     setUserDetail([]);
+  };
+
+  const closeUserModal = () => {
+    setIsUserModalOpen(false);
+    setUserId("");
   };
 
   const deleteUser = () => {
@@ -61,11 +70,16 @@ export default function Users() {
         setLoading(false)
         setUsers(data.data)
         setPages(data.meta.links)
-        console.log(data.meta.links)
       })
       .catch(() => {
         setLoading(false)
       })
+  }
+
+  const openCreateModal = (formType, userId = "") => {
+    setIsUserModalOpen(true)
+    setUserId(userId)
+    setFormType(formType)
   }
 
   const getUserByPage = (url) => {
@@ -85,7 +99,7 @@ export default function Users() {
     <div>
       <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}}>
         <h1>Users</h1>
-        <Link className="btn-add" to="/users/new">Add new</Link>
+        <button className="btn-add" onClick={ev => openCreateModal("Create", null)} >Add new</button>
       </div>
       <div className="card animated fadeInDown">
         <Table 
@@ -95,6 +109,7 @@ export default function Users() {
           loading={loading}  
           pages={pages}
           emitRow={onDeleteClick} 
+          openCreateModal={openCreateModal} 
           getUserByPage={getUserByPage} 
         ></Table>
       </div>
@@ -105,6 +120,15 @@ export default function Users() {
         closeModal={closeModal}
       >
       </DeleteModal>
+
+      <UserModal
+        isUserModalOpen={isUserModalOpen}
+        formType={formType}
+        userId={userId}
+        closeUserModal={closeUserModal}
+        resetUser={getUsers}
+      >
+      </UserModal>
     </div>
   )
 }
