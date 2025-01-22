@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-const Table = ({ columns, data, columnsLength, loading, emitRow, pages, getUserByPage }) => {
+const Table = ({ columns, data, columnsLength, loading, emitRow, pages, getUserByPage, openCreateModal }) => {
   
   return (
     <div className="card animated fadeInDown">
@@ -16,7 +16,7 @@ const Table = ({ columns, data, columnsLength, loading, emitRow, pages, getUserB
           <tbody>
           <tr>
             <td colSpan={columnsLength} className="text-center">
-              Loading...
+              <img src="public/loading.gif" alt="Logo" className="logo" />
             </td>
           </tr>
           </tbody>
@@ -33,7 +33,7 @@ const Table = ({ columns, data, columnsLength, loading, emitRow, pages, getUserB
                     <td key={colIndex}>
                       {column.buttons && column.buttons.length > 0 && (
                         <div>
-                          <Link className="btn-edit" to={column.buttons[0].link + row.id}>Edit</Link>
+                          <button className="btn-edit" onClick={ev => openCreateModal && openCreateModal("Edit", row.id)}>Edit</button>
                           &nbsp;
                           <button className="btn-delete" onClick={ev => emitRow && emitRow(row)}>Delete</button>
                         </div>
