@@ -1,4 +1,4 @@
-FROM php:8.2.19-fpm
+FROM php:8.4-fpm
 
 WORKDIR /api
 
@@ -18,7 +18,9 @@ RUN apt-get install -y \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY ./api .
+COPY ./docker/php/custom-php.ini /usr/local/etc/php/conf.d/custom-php.ini
+
+COPY ./src-backend .
 
 RUN chmod 777 -R storage
 RUN chmod 777 -R storage/logs
