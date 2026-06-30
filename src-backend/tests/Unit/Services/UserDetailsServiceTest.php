@@ -38,7 +38,7 @@ class UserDetailsServiceTest extends TestCase
             'password' => 'Password1!',
         ];
 
-        $user = Mockery::mock(User::class);
+        $user = Mockery::mock(User::class)->makePartial();
         $token = Mockery::mock(NewAccessToken::class);
         $token->plainTextToken = 'test-token-123';
 
@@ -67,7 +67,7 @@ class UserDetailsServiceTest extends TestCase
             'password' => 'Password1!',
         ];
 
-        $user = Mockery::mock(User::class);
+        $user = Mockery::mock(User::class)->makePartial();
         $token = Mockery::mock(NewAccessToken::class);
         $token->plainTextToken = 'test-token-456';
 
@@ -130,7 +130,7 @@ class UserDetailsServiceTest extends TestCase
     {
         $socialiteUser = Mockery::mock(SocialiteUser::class);
 
-        $user = Mockery::mock(User::class);
+        $user = Mockery::mock(User::class)->makePartial();
         $token = Mockery::mock(NewAccessToken::class);
         $token->plainTextToken = 'google-token-789';
 

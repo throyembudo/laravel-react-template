@@ -24,7 +24,7 @@ class UserService implements UserServiceInterface
     {
         $data = $this->user->store($data);
 
-        return response(new UserResource($data) , 201);
+        return (new UserResource($data))->response()->setStatusCode(201);
     }
 
     public function updateUser(array $data)
@@ -33,7 +33,7 @@ class UserService implements UserServiceInterface
         if ($user) {
             $data = $this->user->update($data);
 
-            return response(new UserResource($data) , 200);
+            return (new UserResource($data))->response()->setStatusCode(200);
         } else {
             return response()->json(['message' => 'User not found. Unable to Update'], 403);
         }

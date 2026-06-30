@@ -45,7 +45,9 @@ class UserDetailsService implements UserDetailsServiceInterface
 
     public function logout(User $user)
     {
-        $user->currentAccessToken()->delete();
+        /** @var \Laravel\Sanctum\PersonalAccessToken $token */
+        $token = $user->currentAccessToken();
+        $token->delete();
     
         return response('', 204);
     }
