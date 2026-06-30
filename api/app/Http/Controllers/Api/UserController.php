@@ -13,7 +13,7 @@ use App\Services\Interface\UserServiceInterface;
 class UserController extends Controller
 {
 
-    protected $userService;
+    protected \App\Services\Interface\UserServiceInterface $userService;
 
     public function __construct(UserServiceInterface $userService)
     {

@@ -11,7 +11,7 @@ use Laravel\Socialite\Contracts\User as SocialiteUser;
 
 class UserDetailsService implements UserDetailsServiceInterface
 {
-    protected $user;
+    protected \App\Repositories\Interface\UserRepositoryInterface $user;
 
     public function __construct(UserRepositoryInterface $user)
     {
@@ -24,7 +24,7 @@ class UserDetailsService implements UserDetailsServiceInterface
         
         $token = $user->createToken('main')->plainTextToken;
 
-        return response(compact('user', 'token'));
+        return response(['user' => $user, 'token' => $token]);
     }
 
     public function login(array $request)
@@ -40,7 +40,7 @@ class UserDetailsService implements UserDetailsServiceInterface
 
         $token = $user->createToken('main')->plainTextToken;
         
-        return response(compact('user', 'token'));
+        return response(['user' => $user, 'token' => $token]);
     }
 
     public function logout(User $user)
@@ -56,6 +56,6 @@ class UserDetailsService implements UserDetailsServiceInterface
 
         $token = $user->createToken('main')->plainTextToken;
 
-        return response(compact('user', 'token'));
+        return response(['user' => $user, 'token' => $token]);
     }
 }

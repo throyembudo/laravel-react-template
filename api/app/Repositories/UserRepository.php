@@ -23,9 +23,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $request['password'] = bcrypt($request['password']);
 
-        $user = User::create($request);
-
-        return $user;
+        return User::create($request);
     }
 
     public function update($request)
