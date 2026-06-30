@@ -14,7 +14,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-    protected $userDetailsService;
+    protected \App\Services\Interface\UserDetailsServiceInterface $userDetailsService;
 
     public function __construct(UserDetailsServiceInterface $userDetailsService)
     {

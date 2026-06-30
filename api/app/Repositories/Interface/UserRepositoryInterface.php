@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories\Interface;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
 interface UserRepositoryInterface

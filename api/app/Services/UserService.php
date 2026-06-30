@@ -8,7 +8,7 @@ use App\Http\Resources\UserResource;
 
 class UserService implements UserServiceInterface
 {
-    protected $user;
+    protected \App\Repositories\Interface\UserRepositoryInterface $user;
 
     public function __construct(UserRepositoryInterface $user)
     {
