@@ -44,7 +44,7 @@ class UserRepository implements UserRepositoryInterface
         $user = User::find($id);
 
         if ($user) {
-            $user->delete($id); 
+            $user->delete(); 
             
             return response("", 204);
         } else {

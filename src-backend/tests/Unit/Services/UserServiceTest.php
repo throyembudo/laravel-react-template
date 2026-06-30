@@ -52,12 +52,12 @@ class UserServiceTest extends TestCase
         ];
 
         $user = new User([
-            'id' => 1,
             'name' => 'Jane Doe',
             'email' => 'jane@example.com',
             'created_at' => now(),
         ]);
         $user->id = 1;
+        $user->created_at = now();
 
         $this->userRepository
             ->shouldReceive('store')
@@ -84,6 +84,7 @@ class UserServiceTest extends TestCase
             'created_at' => now(),
         ]);
         $user->id = 1;
+        $user->created_at = now();
 
         $this->userRepository
             ->shouldReceive('show')

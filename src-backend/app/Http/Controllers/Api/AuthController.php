@@ -42,19 +42,22 @@ class AuthController extends Controller
 
     public function redirectToAuth(): JsonResponse
     {
+        /** @var \Laravel\Socialite\Two\AbstractProvider $driver */
+        $driver = Socialite::driver('google');
+
         return response()->json([
-            'url' => Socialite::driver('google')
-            ->stateless()
-            ->redirect()
-            ->getTargetUrl(),
+            'url' => $driver->stateless()->redirect()->getTargetUrl(),
         ]);
     }
 
     public function handleAuthCallback()
     {
         try {
+            /** @var \Laravel\Socialite\Two\AbstractProvider $driver */
+            $driver = Socialite::driver('google');
+
             /** @var SocialiteUser $socialiteUser */
-            $socialiteUser = Socialite::driver('google')->stateless()->user();
+            $socialiteUser = $driver->stateless()->user();
         } catch (ClientException $e) {
             return response()->json(['error' => 'Invalid credentials provided.'], 422);
         }

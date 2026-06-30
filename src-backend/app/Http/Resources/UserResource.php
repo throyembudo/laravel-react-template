@@ -4,9 +4,12 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin \App\Models\User
+ */
 class UserResource extends JsonResource
 {
-    public static $wrap = false;
+    public static $wrap = null;
 
     /**
      * Transform the resource into an array.
